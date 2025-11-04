@@ -1,18 +1,14 @@
 <script setup>
 
 
- 
-
+ import index from "@/views/Layout/index.vue"
 </script>
 
 <template>
 <!-- 一级路由出口组件 -->
 <RouterView/>
-<div class="test">
-test scss
-</div>
 
-
+<!-- <index /> -->
 
 </template>
 <style scoped lang="scss">
