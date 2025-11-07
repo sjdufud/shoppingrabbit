@@ -8,14 +8,7 @@ defineProps({
 
 
 })
-
-
-
-
 </script>
-
-
-
 <template>
 
 

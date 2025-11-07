@@ -1,8 +1,14 @@
 import httpInstance  from "@/utils/http";
-export function getBannerAPI(){
+export function getBannerAPI(params ={}){
+  const {distributionSite='1'}=params 
+  //从 params 对象中解构出 distributionSite 参数
+// 默认值为 '1'，如果调用时未传递该参数则使用默认值
+  //'1' 表示默认展示，'2' 表示商品相关展示
     return httpInstance({
-        url:'/home/banner' //这是获取分类头部信息的接口
-
+        url:'/home/banner', //这是获取分类头部信息的接口
+        params:{
+          distributionSite
+        }
     })
 }
 
