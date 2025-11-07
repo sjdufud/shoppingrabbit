@@ -2,6 +2,7 @@
 import { getDetail } from '@/apis/detial';
 import { onMounted, ref } from 'vue';
 import { useRoute } from 'vue-router';
+import DetailHot from '@/views/Detail/components/DetailHot.vue';
 const route =useRoute()
 const goods =ref({})
 const getGoods =async()=>{
@@ -120,7 +121,10 @@ onMounted(()=>getGoods())
             </div>
             <!-- 24热榜+专题推荐 -->
             <div class="goods-aside">
-
+                <!-- 24小时 -->
+               <DetailHot/>
+                <!-- 周 -->
+               <DetailHot/>
             </div>
           </div>
         </div>
