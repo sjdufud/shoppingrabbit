@@ -4,7 +4,7 @@ import { getCategoryAPI } from '@/apis/category';
 import { onBeforeRouteUpdate, useRoute } from 'vue-router';
 import { onMounted, onUpdated } from 'vue';
 
-//获取分类数据
+
 export function useCategory(){
     
     const categoryData =ref({})
