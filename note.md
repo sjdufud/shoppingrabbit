@@ -141,3 +141,145 @@ active-class固定属性名，激活出现类名样式
 ![1762496592731](image/note/1762496592731.png)
 
 ![1762496791621](image/note/1762496791621.png)
+
+# DAY4-二级分类-
+
+## 1.整体认识和路由配置
+
+![1762497024985](image/note/1762497024985.png)
+
+
+![1762497611075](image/note/1762497611075.png)
+
+## 2.面包屑导航实现
+
+![1762499142777](image/note/1762499142777.png)
+
+## 3.基础商品列表实现
+
+![1762501536350](image/note/1762501536350.png)
+
+ get post 的区别
+
+
+### **GET 请求（原方式）**
+
+```
+// GET - 参数在URL中
+export const getCategoryAPI = (id) => {
+  return request({
+    url: `/category/goods/temporary?id=${id}`,  // 参数在URL中
+    method: 'GET'
+  })
+}
+
+// 或者使用 params
+export const getCategoryAPI = (id) => {
+  return request({
+    url: '/category/goods/temporary',
+    method: 'GET',
+    params: { id }  // GET参数在这里
+  })
+}
+```
+
+### **POST 请求（新方式）**
+
+```
+// POST - 参数在请求体中
+export const getSubCategoryAPI = (data) => {
+  return request({
+    url: '/category/goods/temporary',  // ⭐ URL不变
+    method: 'POST',
+    data: data  // POST参数在这里
+  })
+}
+```
+
+
+## 📝 调用方式的差异
+
+### **GET 调用方式**
+
+```
+// 通常传递单个ID或简单参数
+const res = await getCategoryAPI(route.params.id)
+// 或者
+const res = await getCategoryAPI({ id: 123 })
+```
+
+### **POST 调用方式**
+
+```
+// 需要传递对象格式的data
+const res = await getSubCategoryAPI({
+  id: route.params.id,
+  page: 1,
+  pageSize: 20,
+  sort: 'price'
+  // 可以传递更复杂的参数
+})
+```
+
+
+## GET vs POST URL 对比示例
+
+```
+// 调用
+const res = await getCategoryAPI({
+  categoryId: 123,
+  page: 1,
+  pageSize: 20,
+  sort: 'price',
+  brand: 'apple,samsung,huawei',
+  priceRange: '1000-5000',
+  attributes: 'color:red,size:large'
+})// 实际请求的 URL 会变成：
+/category/goods/temporary?
+  categoryId=123&
+  page=1&
+  pageSize=20&
+  sort=price&
+  brand=apple,samsung,huawei&
+  priceRange=1000-5000&
+  attributes=color:red,size:large// ⭐ URL 变得很长且复杂！
+```
+
+
+### **POST 请求 - URL 简洁**
+
+
+```
+// 调用同样的参数
+const res = await getSubCategoryAPI({
+  categoryId: 123,
+  page: 1,
+  pageSize: 20,
+  sort: 'price',
+  brand: 'apple,samsung,huawei',
+  priceRange: '1000-5000',
+  attributes: 'color:red,size:large'
+})// 实际请求的 URL 仍然是：
+/category/goods/temporary// ⭐ 参数在请求体中，URL 保持简洁
+```
+
+核心代码
+
+![1762507785171](image/note/1762507785171.png)
+
+![1762507820151](image/note/1762507820151.png)
+
+![1762507839344](image/note/1762507839344.png)
+
+## **4.添加筛选参数实现筛选功能**
+
+
+![1762508219044](image/note/1762508219044.png)
+
+核心代码：
+
+![1762509531538](image/note/1762509531538.png)
+
+![1762509562208](image/note/1762509562208.png)
+
+el-tabs标签功能：激活对应事件其 name的值被赋值给v-model
