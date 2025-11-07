@@ -1,38 +1,16 @@
 <script setup>
-import { getCategoryAPI } from '@/apis/category';
-import { onMounted, onUpdated } from 'vue';
-import { useRoute } from 'vue-router';
-import { ref } from 'vue';
 import GoodsItem from '../Home/components/GoodsItem.vue';
-//获取数据
-const categoryData =ref({})
+import { useBanner} from '@/views/Category/composables/useBanner'
+import { useCategory } from '@/views/Category/composables/useCategory';
 
-const route=useRoute()  //调用 useRoute() 获取当前路由信息对象 route 对象包含：params、query、path 等路由信息
 
-const getCategory =async()=>{
-  //不同的id返回不同的数据
-    const res =await getCategoryAPI(route.params.id)
-    // console.log(res.result)
-    categoryData.value=res.result
-}
-onMounted(()=>
-    getCategory()
-)
-onUpdated(()=>getCategory())
+//获取分类数据
+ const {categoryData}=useCategory()
+
 //获取banner
-import { getBannerAPI } from '@/apis/Home';
 
-const bannerList=ref([])
+ const {bannerList}=useBanner()
 
-const getBanner=async()=>{
-    const res=await getBannerAPI({
-        distributionSite:'2'
-    })
-    console.log(res)
-    bannerList.value=res.result
-}
-
-onMounted(()=>getBanner())
 
 </script>
 
