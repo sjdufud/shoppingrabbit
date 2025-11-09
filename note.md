@@ -332,7 +332,6 @@ const combinedOld = arr1.concat(arr2)
 
 ![1762568862141](image/note/1762568862141.png)
 
-
 ![1762568948187](image/note/1762568948187.png)
 
 ![1762570213416](image/note/1762570213416.png)
@@ -368,3 +367,9 @@ const combinedOld = arr1.concat(arr2)
 ![1762583066623](image/note/1762583066623.png)
 
 ![1762583194811](image/note/1762583194811.png)
+
+## 16.通用组件全局注册
+
+![1762653623368](image/note/1762653623368.png)
+
+![1762654543476](image/note/1762654543476.png)
