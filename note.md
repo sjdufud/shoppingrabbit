@@ -122,7 +122,7 @@ active-class固定属性名，激活出现类名样式
 
 ### 实现步骤：
 
-####  1.按照业务声明以 `use`开头的逻辑函数
+#### 1.按照业务声明以 `use`开头的逻辑函数
 
 见步骤2
 
@@ -148,7 +148,6 @@ active-class固定属性名，激活出现类名样式
 
 ![1762497024985](image/note/1762497024985.png)
 
-
 ![1762497611075](image/note/1762497611075.png)
 
 ## 2.面包屑导航实现
@@ -160,7 +159,6 @@ active-class固定属性名，激活出现类名样式
 ![1762501536350](image/note/1762501536350.png)
 
  get post 的区别
-
 
 ### **GET 请求（原方式）**
 
@@ -196,7 +194,6 @@ export const getSubCategoryAPI = (data) => {
 }
 ```
 
-
 ## 📝 调用方式的差异
 
 ### **GET 调用方式**
@@ -221,7 +218,6 @@ const res = await getSubCategoryAPI({
 })
 ```
 
-
 ## GET vs POST URL 对比示例
 
 ```
@@ -245,9 +241,7 @@ const res = await getCategoryAPI({
   attributes=color:red,size:large// ⭐ URL 变得很长且复杂！
 ```
 
-
 ### **POST 请求 - URL 简洁**
-
 
 ```
 // 调用同样的参数
@@ -273,7 +267,6 @@ const res = await getSubCategoryAPI({
 
 ## **4.添加筛选参数实现筛选功能**
 
-
 ![1762508219044](image/note/1762508219044.png)
 
 核心代码：
@@ -288,7 +281,6 @@ el-tabs标签功能：激活对应事件其 name的值被赋值给v-model
 
 ![1762514801190](image/note/1762514801190.png)
 
-
 数组展开
 
 ```
@@ -297,7 +289,6 @@ const arr2 = [4, 5, 6]// 合并数组
 const combined = [...arr1, ...arr2]  // [1, 2, 3, 4, 5, 6]// 相当于
 const combinedOld = arr1.concat(arr2)
 ```
-
 
 核心代码：
 
@@ -336,3 +327,44 @@ const combinedOld = arr1.concat(arr2)
 ## 10.详情页-热榜区-适配不同title和数据列表
 
 ![1762535986827](image/note/1762535986827.png)
+
+## 11.图片预览组件
+
+![1762568862141](image/note/1762568862141.png)
+
+
+![1762568948187](image/note/1762568948187.png)
+
+![1762570213416](image/note/1762570213416.png)
+
+![1762570264301](image/note/1762570264301.png)![1762570283556](image/note/1762570283556.png)
+
+## 12.图片预览--放大镜效果
+
+![1762570532724](image/note/1762570532724.png)![1762571258492](image/note/1762571258492.png)
+
+  ![1762579005153](image/note/1762579005153.png)
+
+![1762579018210](image/note/1762579018210.png)
+
+## 13.大图效果实现
+
+![1762579138319](image/note/1762579138319.png)
+
+![1762579906799](image/note/1762579906799.png)
+
+![1762579919305](image/note/1762579919305.png)
+
+![1762579957997](image/note/1762579957997.png)
+
+## 14.Props适配
+
+![1762580756879](image/note/1762580756879.png)
+
+![1762581698076](image/note/1762581698076.png)
+
+## 15.SKU的概念
+
+![1762583066623](image/note/1762583066623.png)
+
+![1762583194811](image/note/1762583194811.png)
