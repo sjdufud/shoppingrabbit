@@ -3,6 +3,7 @@ import 'element-plus/theme-chalk/el-message.css'
 import { useRouter } from 'vue-router';
 import axios from "axios";
 import { ElMessage } from 'element-plus';
+import {useUserStore}from '@/stores/user'
 const httpInstance = axios.create({
     baseURL:'http://pcapi-xiaotuxian-front-devtest.itheima.net',
     timeout:10000
@@ -13,6 +14,19 @@ const httpInstance = axios.create({
 //拦截器允许你在请求发送到服务器之前或响应返回到客户端之前对它们进行一些处理。
 httpInstance.interceptors.request.use(
   config => {
+    //1.从pinia获取token数据
+
+    const userStore=useUserStore();
+
+    //2.按照后端的要求拼接后端数据
+
+    const token =userStore.userInfo.token
+    if(token){
+
+      config.headers.Authorization=`Bearer ${token}`
+
+    }
+
     return config //第一个函数是请求成功时的处理函数，它接收请求配置对象（config）作为参数。
     // 这里我们直接返回config，表示不对请求做任何修改，只是传递下去。
   },
