@@ -41,6 +41,27 @@ const rules={
 
 }
 
+//3.获取表单实例
+
+const formRef =ref(null)
+
+const doLogin =()=>{
+    formRef.value.validate((valid)=>{
+        //vaild:所有表单都通过校验 才为true
+        console.log(valid)
+        //以valid作为判断条件 如果通过校验才执行登录逻辑
+        if(valid){
+            //TODO LOGIN
+
+        }
+    })
+}
+
+//1.用户名和密码，只需要通过简单的配置（看文档的方式-复杂功能通过多个不同组件拆解）
+//2.统一协议，自定义规则 validator:(rule,value,callback)=>{}
+//3.统一校验 通过调用form实例的方法 validate->true
+
+
 
 
 
@@ -70,7 +91,7 @@ const rules={
         <div class="account-box">
           <div class="form">
             <!-- 准备表单对象并绑定，准备规则对象并绑定 -->
-            <el-form :model="form" :rules="rules" label-position="right" label-width="60px"
+            <el-form  ref="formRef" :model="form" :rules="rules" label-position="right" label-width="60px"
               status-icon>
               <!-- 制定表单域的校验字段名  prop="account" -->
               <el-form-item prop="account" label="账户">
@@ -87,7 +108,7 @@ const rules={
                   我已同意隐私条款和服务条款
                 </el-checkbox>
               </el-form-item>
-              <el-button size="large" class="subBtn">点击登录</el-button>
+              <el-button size="large" class="subBtn" @click="doLogin">点击登录</el-button>
             </el-form>
           </div>
         </div>
