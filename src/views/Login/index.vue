@@ -9,7 +9,8 @@ import { ref } from 'vue';
 
 const form =ref({
     account:'',
-    password:''
+    password:'',
+    agree:''
 })
 
 //2.准备规则对象
@@ -22,6 +23,20 @@ const rules={
         // trigger: 'blur' 是表单验证的触发时机配置，表示在输入框失去焦点时触发验证。
         {required:true,message:'密码不能为空',trigger:'blur'},
         {min:6,max:14,message:'密码长度为6-14字符',trigger:'blur'},
+    ],
+    agree:[
+       {
+         validator: (rule,value,callback)=>{
+            console.log(value)
+            //自定义校验逻辑
+            //勾选就通过，不勾选就不通过
+            if(value){
+                callback()
+            }else{
+                callback(new Error("请勾选协议"))
+            }
+        }
+       }
     ]
 
 }
@@ -54,6 +69,7 @@ const rules={
         </nav>
         <div class="account-box">
           <div class="form">
+            <!-- 准备表单对象并绑定，准备规则对象并绑定 -->
             <el-form :model="form" :rules="rules" label-position="right" label-width="60px"
               status-icon>
               <!-- 制定表单域的校验字段名  prop="account" -->
@@ -66,8 +82,8 @@ const rules={
                 <!-- 表单双向绑定 v-model="form.account"-->
                 <el-input v-model="form.password"/>
               </el-form-item>
-              <el-form-item label-width="22px">
-                <el-checkbox  size="large">
+              <el-form-item prop="agree" label-width="22px">
+                <el-checkbox  size="large" v-model="form.agree">
                   我已同意隐私条款和服务条款
                 </el-checkbox>
               </el-form-item>
