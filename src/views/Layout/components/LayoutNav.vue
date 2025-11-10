@@ -1,5 +1,9 @@
 <script setup>
 import { RouterLink } from 'vue-router';
+import { useUserStore } from '@/stores/user';
+
+const userStore=useUserStore()
+
 
 
 </script>
@@ -9,8 +13,10 @@ import { RouterLink } from 'vue-router';
     <div class="container">
       <ul>
         <!-- 多模版渲染 区分登录状态和非登录状态-->
-        <template v-if="false">
-          <li><a href="javascript:;"><i class="iconfont icon-user"></i>周杰伦</a></li>
+
+        <!-- 适配思路：登录时显示第一块，非登录显示第二快 判断条件：是否有token-->
+        <template v-if="userStore.userInfo?.token">
+          <li><a href="javascript:;"><i class="iconfont icon-user"></i>{{ userStore.userInfo.account }}</a></li>
           <li>
             <el-popconfirm title="确认退出吗?" confirm-button-text="确认" cancel-button-text="取消">
               <template #reference>
