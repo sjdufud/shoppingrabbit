@@ -14,7 +14,7 @@ const router = createRouter({
   routes: [
     {
       path:'/',
-      component:Layout,
+      component: () => import('@/views/Layout/index.vue'), 
       children:[{
         path:'', //默认二级路由
         component:Home

@@ -1,6 +1,9 @@
 <script setup>
-import { RouterLink } from 'vue-router';
+
 import { useUserStore } from '@/stores/user';
+
+import { RouterLink } from 'vue-router';
+
 import { useRouter } from 'vue-router';
 const userStore=useUserStore()
 const router =useRouter()
@@ -9,6 +12,7 @@ const confirm=()=>{
   //退出登录业务逻辑
   //1.清除用户信息 触发action函数
   userStore.clearUserInfo()
+  
   //2.跳转登录页
   router.push('/login')
 }

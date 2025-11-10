@@ -1,7 +1,7 @@
 <script setup>
 
 import { useCategoryStore } from '@/stores/category';
-import { watch,onMounted } from 'vue';
+
 
 const categoryStore=useCategoryStore()
 // categoryStore.getCategory();
