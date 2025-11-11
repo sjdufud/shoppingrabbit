@@ -9,6 +9,12 @@ const singleCheck=(i,selected)=>{
     cartStore.singleCheck(i.skuId,selected)
 }
 
+const allCheck =(selected)=>{
+    cartStore.allCheck(selected)
+}
+
+
+
 
 </script>
 
@@ -20,7 +26,8 @@ const singleCheck=(i,selected)=>{
           <thead>
             <tr>
               <th width="120">
-                <el-checkbox/>
+                <!-- 全选框 -->
+                <el-checkbox :model-value="cartStore.isAll" @change="allCheck"/>
               </th>
               <th width="400">商品信息</th>
               <th width="220">单价</th>
@@ -33,7 +40,8 @@ const singleCheck=(i,selected)=>{
           <tbody>
             <tr v-for="i in cartStore.cartList" :key="i.id">
               <td>
-                <!-- 单选框 -->
+                <!-- 单选框 --> 
+                 <!-- "(selected)=>singleCheck(i,selected)"在默认参数的基础上再传一个参数 -->
                 <el-checkbox  :model-value="i.selected" @change="(selected)=>singleCheck(i,selected)"/>
               </td>
               <td>

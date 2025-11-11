@@ -32,7 +32,6 @@ export const useCartStore=defineStore('cart',()=>{
       // cartList.value = cartList.value.filter((item) => item.skuId !== skuId)
     }
     //单选功能
-
     const singleCheck=(skuId,selected)=>{
       // 通过skuid找到要修改的那一项，然后把它的selected修改为传过来的selected
       const item = cartList.value.find((item)=>item.skuId===skuId)
@@ -40,10 +39,10 @@ export const useCartStore=defineStore('cart',()=>{
 
     }
 
-
-
-
-
+    const allCheck=(selected)=>{
+      //把cartlist中的每一项的selected都设置为当前的选项
+      cartList.value.forEach(item=>item.selected=selected)
+    }
     //计算属性
     //1.总的数量
     //accumulator: 累积器，累积回调的返回值
@@ -53,7 +52,8 @@ export const useCartStore=defineStore('cart',()=>{
 
     const allPrice=computed(()=>cartList.value.reduce((a,c)=>a+c.price*c.count,0))
 
-
+    const isAll=computed(()=>cartList.value.every((item)=>item.selected))
+    
 
     return{
 
@@ -62,7 +62,9 @@ export const useCartStore=defineStore('cart',()=>{
         delCart,
         allCount,
         allPrice,
-        singleCheck
+        singleCheck,
+        isAll,
+        allCheck
 
     }
     
