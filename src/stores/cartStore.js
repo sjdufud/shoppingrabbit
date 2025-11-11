@@ -38,7 +38,7 @@ export const useCartStore=defineStore('cart',()=>{
       item.selected=selected
 
     }
-
+    //全选功能
     const allCheck=(selected)=>{
       //把cartlist中的每一项的selected都设置为当前的选项
       cartList.value.forEach(item=>item.selected=selected)
@@ -47,14 +47,16 @@ export const useCartStore=defineStore('cart',()=>{
     //1.总的数量
     //accumulator: 累积器，累积回调的返回值
     // currentValue: 当前处理的元素
-    // reduce:用于将数组元素累积计算为一个单一的值
+    // reduce:用于将数组元素累积计算为一个单一的值 (a,c)=>a+c.count累计方法。0：起始值
     const allCount=computed(()=>cartList.value.reduce((a,c)=>a+c.count,0))
-
+    //2.总价
     const allPrice=computed(()=>cartList.value.reduce((a,c)=>a+c.price*c.count,0))
-
+    //是否全选
     const isAll=computed(()=>cartList.value.every((item)=>item.selected))
-    
-
+    //3.已选择数量
+    const selectedCount =computed(()=>cartList.value.filter(item=>item.selected).reduce((a,c)=>a+c.count,0))
+   //4.已选择商品合计
+    const selectedPrice =computed(()=>cartList.value.filter(item=>item.selected).reduce((a,c)=>a+c.count*c.price,0))
     return{
 
         cartList,
@@ -64,7 +66,9 @@ export const useCartStore=defineStore('cart',()=>{
         allPrice,
         singleCheck,
         isAll,
-        allCheck
+        allCheck,
+        selectedCount,
+        selectedPrice
 
     }
     
