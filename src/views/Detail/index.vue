@@ -52,11 +52,6 @@ const addCart=()=>{
   }
 
 }
-
-
-
-
-
 //count
 
 const count =ref(1)

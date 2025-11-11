@@ -450,7 +450,6 @@ const combinedOld = arr1.concat(arr2)
 
 ![1762773386052](image/note/1762773386052.png)
 
-
 ![1762773437092](image/note/1762773437092.png)
 
 ## 9.登录--携带token
@@ -478,3 +477,14 @@ const combinedOld = arr1.concat(arr2)
 ![1762826630573](image/note/1762826630573.png)
 
 ![1762826857017](image/note/1762826857017.png)
+
+![1762831518077](image/note/1762831518077.png)
+
+![1762831568234](image/note/1762831568234.png)
+
+![1762831592897](image/note/1762831592897.png)
+
+## 13.头部购物车列表渲染
+
+
+![1762834421397](image/note/1762834421397.png)![1762834421397](image/note/1762834421397.png)
