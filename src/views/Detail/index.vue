@@ -4,6 +4,8 @@ import { onMounted, ref } from 'vue';
 import { useRoute } from 'vue-router';
 // import ImageView from '@/components/ImageView/index.vue'
 import DetailHot from '@/views/Detail/components/DetailHot.vue';
+import { ElMessage } from 'element-plus';
+import {useCartStore} from '@/stores/cartStore'
 // import XtxSku from '@/components/XtxSku/index.vue'
 const route =useRoute()
 const goods =ref({})
@@ -15,11 +17,54 @@ const getGoods =async()=>{
 onMounted(()=>getGoods())
 
 
-//sku规格被操作时
-
+//sku规格被操作时,即选择规格时传入对象 选择不完全打印空对象，选择完全打印选择的所有规格数据
+let skuObj={}
 const skuChange=(sku)=>{
-  console.log(sku)
+
+  console.log(sku) //返回一系列数据包括sku.id
+  skuObj=sku
 }
+
+
+//添加购物车
+const cartStore =useCartStore()
+const addCart=()=>{
+
+  if(skuObj.skuId){
+    //规则已经选择 触发action
+    cartStore.addCart({
+      id:goods.value.id,
+      name:goods.value.name,
+      picture:goods.value.mainPictures[0],
+      price:goods.value.price,
+      count:count.value,
+      skuId:skuObj.specsText,
+      attrsText:skuObj.skuId,
+      selected:true
+    }
+  )
+ console.log(cartStore.cartList)
+  }else{
+    //规则没有选择 提示用户
+
+    ElMessage.warning('请选择规格')
+
+  }
+
+}
+
+
+
+
+
+//count
+
+const count =ref(1)
+
+const countChange=(count)=>{
+  console.log(count)
+}
+
 
 </script>
 
@@ -99,10 +144,10 @@ const skuChange=(sku)=>{
               <!-- sku组件 -->
               <XtxSku :goods="goods" @change="skuChange"/>
               <!-- 数据组件 -->
-
+              <el-input-number v-model="count" @change="countChange" />
               <!-- 按钮组件 -->
               <div>
-                <el-button size="large" class="btn">
+                <el-button size="large" class="btn" @click="addCart">
                   加入购物车
                 </el-button>
               </div>
