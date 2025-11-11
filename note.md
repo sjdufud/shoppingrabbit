@@ -504,3 +504,8 @@ const combinedOld = arr1.concat(arr2)
 ## 15.头部购物车统计计算
 
 ![1762839062295](image/note/1762839062295.png)
+
+
+![1762841585880](image/note/1762841585880.png)
+
+![1762841545641](image/note/1762841545641.png)

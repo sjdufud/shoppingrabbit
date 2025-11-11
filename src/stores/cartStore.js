@@ -35,7 +35,7 @@ export const useCartStore=defineStore('cart',()=>{
     //1.总的数量
     //accumulator: 累积器，累积回调的返回值
     // currentValue: 当前处理的元素
-    // 用于将数组元素累积计算为一个单一的值
+    // reduce:用于将数组元素累积计算为一个单一的值
     const allCount=computed(()=>cartList.value.reduce((a,c)=>a+c.count,0))
 
     const allPrice=computed(()=>cartList.value.reduce((a,c)=>a+c.price*c.count,0))
