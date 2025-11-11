@@ -2,7 +2,7 @@
 
 import{defineStore}from 'pinia'
 import { ref } from 'vue'
-
+import { computed } from 'vue'
 export const useCartStore=defineStore('cart',()=>{
     // 1.定义state-cartlist
     const cartList=ref([])
@@ -31,11 +31,24 @@ export const useCartStore=defineStore('cart',()=>{
       //使用filter
       // cartList.value = cartList.value.filter((item) => item.skuId !== skuId)
     }
+    //计算属性
+    //1.总的数量
+    //accumulator: 累积器，累积回调的返回值
+    // currentValue: 当前处理的元素
+    // 用于将数组元素累积计算为一个单一的值
+    const allCount=computed(()=>cartList.value.reduce((a,c)=>a+c.count,0))
+
+    const allPrice=computed(()=>cartList.value.reduce((a,c)=>a+c.price*c.count,0))
+
+
+
     return{
 
         cartList,
         addCart,
-        delCart
+        delCart,
+        allCount,
+        allPrice
 
     }
     

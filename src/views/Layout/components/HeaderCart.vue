@@ -35,8 +35,9 @@ const cartStore=useCartStore()
       </div>
       <div class="foot">
         <div class="total">
-          <p>共 10 件商品</p>
-          <p>¥ 100.00 </p>
+          <p>共{{ cartStore.allCount }}件商品</p>
+          <p>¥ {{ cartStore.allPrice.toFixed(2) }} </p>
+          <!-- .toFixed(2) 保留两位小数 -->
         </div>
         <el-button size="large" type="primary" >去购物车结算</el-button>
       </div>
