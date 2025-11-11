@@ -38,8 +38,8 @@ const addCart=()=>{
       picture:goods.value.mainPictures[0],
       price:goods.value.price,
       count:count.value,
-      skuId:skuObj.specsText,
-      attrsText:skuObj.skuId,
+      skuId:skuObj.skuId,
+      attrsText:skuObj.specsText,
       selected:true
     }
   )
