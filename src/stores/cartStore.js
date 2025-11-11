@@ -20,11 +20,22 @@ export const useCartStore=defineStore('cart',()=>{
             cartList.value.push(goods)
           }
     }
+  //删除购物车
 
+    const delCart=(skuId)=>{
+      //思路：1.找到要删除的下标值 - splice 法通过删除或替换现有元素，或者添加新元素来修改数组。
+      //2.使用数组过滤方法 -filter 方法创建一个新数组，包含通过测试函数的所有元素。筛选符合条件的元素
+      //3.findIndex() 方法返回数组中满足测试函数的第一个元素的索引。如果没有找到则返回 -1。
+      const idx=cartList.value.findIndex((item)=>skuId===item.skuId)
+      cartList.value.splice(idx,1)
+      //使用filter
+      // cartList.value = cartList.value.filter((item) => item.skuId !== skuId)
+    }
     return{
 
         cartList,
-        addCart
+        addCart,
+        delCart
 
     }
     
