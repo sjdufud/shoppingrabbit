@@ -24,3 +24,16 @@ export const insertCartAPI = ({ skuId, count }) => {
         url:'/member/cart'
     })
  }
+
+
+
+ //删除购物车列表接口
+ export const delCartAPI =(ids)=>{
+    return request({
+       url:'/member/cart',
+    method:'DELETE',
+    data:{
+        ids
+    }
+    })
+ }

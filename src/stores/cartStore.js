@@ -4,22 +4,26 @@ import{defineStore}from 'pinia'
 import { ref } from 'vue'
 import { computed } from 'vue'
 import { useUserStore } from './user'
-import { insertCartAPI,findNewCartListAPI } from '@/apis/cart'
+import { insertCartAPI,findNewCartListAPI,delCartAPI} from '@/apis/cart'
 
 export const useCartStore=defineStore('cart',()=>{
   const userStore=useUserStore();
-  //获取token
+  //获取token来判断是否登录，token存在则登录状态
   const isLogin =computed(()=>userStore.userInfo.token)
     // 1.定义state-cartlist
     const cartList=ref([])
+     //获取最新购物车列表
+    const updateNewList =async()=>{
+      const res=await findNewCartListAPI()
+      cartList.value=res.result
+    }
     //2.定义action-addcart
     const addCart=async(goods)=>{
       const {skuId,count} =goods
       if(isLogin.value){
         //登录之后加入购物车逻辑
-      await  insertCartAPI({skuId,count}) //参数是goods给的
-      const res=await findNewCartListAPI()
-      cartList.value=res.result
+        await insertCartAPI({skuId,count})
+       updateNewList()
       }else{
 
         //添加购物车功能
@@ -34,12 +38,16 @@ export const useCartStore=defineStore('cart',()=>{
           }
 
       }
-       
-       
     }
   //删除购物车
 
-    const delCart=(skuId)=>{
+    const delCart=async(skuId)=>{
+
+      if(isLogin.value){
+        //调用接口实现接口购物车的删除功能
+      await delCartAPI([skuId])
+      updateNewList()
+      }else{
       //思路：1.找到要删除的下标值 - splice 法通过删除或替换现有元素，或者添加新元素来修改数组。
       //2.使用数组过滤方法 -filter 方法创建一个新数组，包含通过测试函数的所有元素。筛选符合条件的元素
       //3.findIndex() 方法返回数组中满足测试函数的第一个元素的索引。如果没有找到则返回 -1。
@@ -47,7 +55,9 @@ export const useCartStore=defineStore('cart',()=>{
       cartList.value.splice(idx,1)
       //使用filter
       // cartList.value = cartList.value.filter((item) => item.skuId !== skuId)
+      }
     }
+
     //单选功能
     const singleCheck=(skuId,selected)=>{
       // 通过skuid找到要修改的那一项，然后把它的selected修改为传过来的selected
