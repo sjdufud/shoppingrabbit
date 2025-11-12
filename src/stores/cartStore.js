@@ -7,9 +7,9 @@ import { useUserStore } from './user'
 import { insertCartAPI,findNewCartListAPI,delCartAPI} from '@/apis/cart'
 
 export const useCartStore=defineStore('cart',()=>{
-  const userStore=useUserStore();
+    const userStore=useUserStore();
   //获取token来判断是否登录，token存在则登录状态
-  const isLogin =computed(()=>userStore.userInfo.token)
+    const isLogin =computed(()=>userStore.userInfo.token)
     // 1.定义state-cartlist
     const cartList=ref([])
      //获取最新购物车列表
@@ -103,7 +103,8 @@ export const useCartStore=defineStore('cart',()=>{
         allCheck,
         selectedCount,
         selectedPrice,
-        clearCart
+        clearCart,
+        updateNewList
 
     }
     
