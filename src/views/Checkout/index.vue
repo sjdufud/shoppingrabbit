@@ -1,10 +1,12 @@
 <script setup>
 
-import {getCheckInfoAPI} from '@/apis/checkout'
+import {getCheckInfoAPI,createOderAPI} from '@/apis/checkout'
 import { ElMessage } from 'element-plus'
 import { onMounted, ref } from 'vue'
-
-
+import{useRouter}from 'vue-router'
+import { useCartStore } from '@/stores/cartStore'
+const cartStore =useCartStore()
+const router=useRouter()
 const checkInfo = ref({})  // 订单对象
 const curAddress =ref({})
  
@@ -38,10 +40,37 @@ const comfirm =()=>{
         console.log('确认选择的地址:', curAddress.value)
     } else {
         // 可以添加提示，告诉用户需要先选择地址
-        ElMessage('请先选择一个地址')
+        ElMessage.warning('请先选择一个地址')
     }
 }
 
+//创建订单
+
+const createOrder =async()=>{
+   const res= await createOderAPI({
+        deliveryTimeType:1,
+        payType:1,
+        payChannel:1,
+        buyerMessage:' ',
+        goods:checkInfo.value.goods.map(item=>{
+            return{
+                skuId:item.skuId,
+                count:item.count
+            }
+        }),
+        addressId:curAddress.value.id
+    })
+    const orderId=res.result.id
+    router.push({
+        path:'/pay',
+        query:{
+            id:orderId
+        }
+
+    })
+//更新购物车
+ cartStore.updateNewList()
+}
 
 
 
@@ -141,7 +170,7 @@ const comfirm =()=>{
         </div>
         <!-- 提交订单 -->
         <div class="submit">
-          <el-button type="primary" size="large" >提交订单</el-button>
+          <el-button @click="createOrder" type="primary" size="large" >提交订单</el-button>
         </div>
       </div>
     </div>
