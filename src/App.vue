@@ -1,7 +1,7 @@
 <script setup>
 
 
- import index from "@/views/Layout/index.vue"
+
 </script>
 
 <template>
