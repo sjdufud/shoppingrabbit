@@ -61,7 +61,7 @@ watch([elementX,elementY,isOutside],()=>{
     if(elementY.value<100){top.value=0}
     //控制大图的显示
     positionX.value=-left.value * 2
-    positionY.value=   -top.value * 2
+    positionY.value=-top.value * 2
 })
 
 
@@ -74,7 +74,7 @@ watch([elementX,elementY,isOutside],()=>{
 <template>
     
 
-
+<div>{{ positionX }},{{ positionY }}</div>
   <div class="goods-image">
     
     <!-- 左侧大图-->

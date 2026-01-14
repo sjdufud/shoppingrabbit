@@ -12,8 +12,9 @@ import{ useUserStore }from '@/stores/user'
 
 const userStore =useUserStore()
 // import{ useRouter} from “vue-router” 带r是调用方法,不带r是调用链接
-//1.准备表单对象
 
+
+//1.准备表单对象
 const form =ref({
     account:'',
     password:'',

@@ -21,6 +21,7 @@ const params=ref( {
 })
 const getOrderList =async()=>{
     const res =await getUserOrder(params.value)
+    console.log(res.result)
     orderList.value=res.result.items
     total.value=res.result.counts
 }
